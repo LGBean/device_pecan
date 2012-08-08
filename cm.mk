@@ -1,11 +1,23 @@
+# Prepare for new BootAnimation
+TARGET_BOOTANIMATION_NAME := vertical-240x320
+
 ## Specify phone tech before including full_phone
 $(call inherit-product, vendor/cm/config/gsm.mk)
 
+# Include GSM stuff
+$(call inherit-product, vendor/cm/config/gsm.mk)
+
+# Inherit from those products. Most specific first
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product, device/common/gps/gps_eu_supl.mk)
+
+# Inherit some common cyanogenmod stuff.
+$(call inherit-product, vendor/cm/config/common_mini_phone.mk)
+
 # Release name
 PRODUCT_RELEASE_NAME := pecan
-
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/lge/pecan/device_pecan.mk)

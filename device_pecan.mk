@@ -5,7 +5,7 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 $(call inherit-product-if-exists, vendor/lge/pecan/pecan-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/lge/upecan/overlay
+DEVICE_PACKAGE_OVERLAYS += device/lge/pecan/overlay
 DEVICE_PACKAGE_OVERLAYS += device/lge/pecan/ldpi
 PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/ldpi
 
@@ -35,10 +35,6 @@ PRODUCT_PACKAGES += \
     Gallery2
 
 PRODUCT_LOCALES := en_GB
-# LDPI assets
-PRODUCT_LOCALES += ldpi mdpi
-PRODUCT_AAPT_CONFIG := ldpi mdpi
-PRODUCT_AAPT_PREF_CONFIG := ldpi
 
 LOCAL_PATH := device/lge/pecan
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -52,7 +48,6 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product, build/target/product/full.mk)
 
-# Device permissions
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
@@ -62,7 +57,8 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
-    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml 
+
 
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
@@ -96,16 +92,17 @@ PRODUCT_COPY_FILES += \
 
 # Touch and IDC
 PRODUCT_COPY_FILES += \
-    device/lge/pecan/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
-    device/lge/pecan/usr/keylayout/touch_mcs7000.kl:system/usr/keylayout/touch_mcs7000.kl \
-    device/lge/pecan/usr/keychars/touch_mcs6000.kcm.bin:system/usr/keychars/touch_mcs6000.kcm.bin \
+    device/lge/pecan/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
+    device/lge/pecan/prebuilt/usr/keylayout/touch_mcs7000.kl:system/usr/keylayout/touch_mcs7000.kl \
+    device/lge/pecan/prebuilt/usr/keychars/touch_mcs6000.kcm.bin:system/usr/keychars/touch_mcs6000.kcm.bin \
     device/lge/pecan/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-    device/lge/pecan/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl 
+    device/lge/pecan/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl 
 
    
 # BT startup
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/init.qcom.bt.sh:system/bin/init.qcom.bt.sh
+
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_pecan
